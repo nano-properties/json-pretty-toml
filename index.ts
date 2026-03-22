@@ -115,10 +115,6 @@ async function main() {
   console.log(writer.convert(json))
 }
 
-import { fileURLToPath } from 'node:url'
-
-const __filename = fileURLToPath(import.meta.url)
-
-if (process.argv[1] === __filename) {
+if (process.argv[1] === import.meta.filename) {
   main()
 }
