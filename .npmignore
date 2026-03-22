@@ -1,11 +1,7 @@
-# source & test
+# test only
 index.test.ts
-index.ts
 test/
 *.test.ts
-
-# build script
-build.mjs
 
 # config
 .prettierrc

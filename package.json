@@ -1,14 +1,14 @@
 {
   "name": "json-pretty-toml",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convert JSON to flat TOML with max 2-level keys",
-  "main": "cli.mjs",
+  "main": "index.ts",
   "type": "module",
   "engines": {
     "node": ">=23"
   },
   "bin": {
-    "json-pretty-toml": "./cli.mjs"
+    "json-pretty-toml": "./index.ts"
   },
   "scripts": {
     "test": "bun test",
