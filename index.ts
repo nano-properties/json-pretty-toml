@@ -1,5 +1,3 @@
-#!/usr/bin/env bun
-
 export class TOMLWriter {
   private indent = '  '
 
@@ -47,14 +45,12 @@ export class TOMLWriter {
   private formatArray(arr: unknown[], currentIndent: string): string {
     if (arr.length === 0) return '[]'
 
-    // 简单数组（无对象）单行显示
     const hasObject = arr.some((v) => this.isObject(v))
     if (!hasObject) {
       const items = arr.map((v) => this.formatValue(v, currentIndent)).join(', ')
       return `[${items}]`
     }
 
-    // 包含对象，多行显示
     const nextIndent = currentIndent + this.indent
     const items = arr.map((v) => {
       const formatted = this.isObject(v) ? this.formatInlineTable(v, nextIndent) : this.formatValue(v, nextIndent)
@@ -96,8 +92,16 @@ ${currentIndent}}`
   }
 }
 
-if (import.meta.main) {
-  const input = await Bun.stdin.text()
+async function readStdin(): Promise<string> {
+  const chunks: Buffer[] = []
+  for await (const chunk of process.stdin) {
+    chunks.push(chunk)
+  }
+  return Buffer.concat(chunks).toString('utf8')
+}
+
+async function main() {
+  const input = await readStdin()
 
   let json: Record<string, unknown>
   try {
@@ -109,4 +113,12 @@ if (import.meta.main) {
 
   const writer = new TOMLWriter()
   console.log(writer.convert(json))
+}
+
+import { fileURLToPath } from 'node:url'
+
+const __filename = fileURLToPath(import.meta.url)
+
+if (process.argv[1] === __filename) {
+  main()
 }

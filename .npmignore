@@ -1,0 +1,30 @@
+# source & test
+index.test.ts
+test/
+*.test.ts
+
+# config
+.prettierrc
+tsconfig.json
+
+# lock file
+bun.lock
+package-lock.json
+yarn.lock
+
+# dev
+.git
+.github/
+.gitignore
+CLAUDE.md
+openclaw.json
+openclaw.toml
+
+# misc
+.idea/
+.vscode/
+.DS_Store
+coverage/
+*.log
+.cache/
+*.tsbuildinfo
