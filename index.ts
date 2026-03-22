@@ -100,7 +100,30 @@ async function readStdin(): Promise<string> {
   return Buffer.concat(chunks).toString('utf8')
 }
 
+function showHelp() {
+  console.log(`json-pretty-toml - Convert JSON to flat TOML
+
+Usage:
+  json-pretty-toml < input.json > output.toml
+
+Options:
+  -h, --help    Show this help message
+
+Sample:
+  echo '{"server":{"port":8080}}' | json-pretty-toml
+
+Output:
+  [server]
+  port = 8080
+`)
+}
+
 async function main() {
+  if (process.argv.includes('-h') || process.argv.includes('--help')) {
+    showHelp()
+    process.exit(0)
+  }
+
   const input = await readStdin()
 
   let json: Record<string, unknown>

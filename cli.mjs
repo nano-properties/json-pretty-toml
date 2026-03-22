@@ -1,4 +1,24 @@
 #!/usr/bin/env node
+
+if (process.argv.includes('-h') || process.argv.includes('--help')) {
+  console.log(`json-pretty-toml - Convert JSON to flat TOML
+
+Usage:
+  json-pretty-toml < input.json > output.toml
+
+Options:
+  -h, --help    Show this help message
+
+Sample:
+  echo '{"server":{"port":8080}}' | json-pretty-toml
+
+Output:
+  [server]
+  port = 8080
+`)
+  process.exit(0)
+}
+
 import { TOMLWriter } from './index.ts'
 
 async function readStdin() {
