@@ -1,6 +1,6 @@
 {
   "name": "json-pretty-toml",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Convert JSON to flat TOML with max 2-level keys",
   "main": "index.ts",
   "type": "module",
@@ -8,7 +8,7 @@
     "node": ">=23"
   },
   "bin": {
-    "json-pretty-toml": "./index.ts"
+    "json-pretty-toml": "./cli.mjs"
   },
   "scripts": {
     "test": "bun test",

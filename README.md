@@ -1,32 +1,34 @@
 # json-pretty-toml
 
-JSON 转扁平 TOML，最多两层 key。
+Convert JSON to flat TOML with max 2-level keys.
 
-## 安装
+## Installation
 
 ```bash
 npm install -g json-pretty-toml
 ```
 
-或直接用 npx：
+Or use with npx (no installation):
 
 ```bash
 npx json-pretty-toml < input.json
 ```
 
-## 使用
+## Usage
 
 ```bash
 json-pretty-toml < input.json > output.toml
 ```
 
-## 规则
+## Rules
 
-- 第一层 → `[Table]`
-- 第二层简单值 → `key = value`
-- 第二层对象 → `key.sub = { ... }`
+- First level → `[Table]`
+- Second level primitive → `key = value`
+- Second level object → `key.sub = { ... }`
 
-## 示例
+## Example
+
+Input:
 
 ```json
 {
@@ -37,7 +39,7 @@ json-pretty-toml < input.json > output.toml
 }
 ```
 
-输出：
+Output:
 
 ```toml
 [gateway]
@@ -45,11 +47,11 @@ port = 18789
 auth.mode = "token"
 ```
 
-## 要求
+## Requirements
 
-Node.js >= 23
+- Node.js >= 23 (native TypeScript support)
 
-## 开发
+## Development
 
 ```bash
 bun install
