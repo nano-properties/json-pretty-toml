@@ -7,9 +7,7 @@
   "engines": {
     "node": ">=23"
   },
-  "bin": {
-    "json-pretty-toml": "./cli.mjs"
-  },
+  "bin": "./cli.mjs",
   "scripts": {
     "test": "bun test",
     "format": "prettier --write ."
