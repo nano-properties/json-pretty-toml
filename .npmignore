@@ -1,5 +1,4 @@
-# source (cli.mjs is standalone)
-index.ts
+# test only
 index.test.ts
 test/
 *.test.ts

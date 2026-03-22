@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 export class TOMLWriter {
-  private indent = '  '
+  constructor() {
+    this.indent = '  '
+  }
 
-  convert(json: Record<string, unknown>): string {
-    const lines: string[] = []
+  convert(json) {
+    const lines = []
 
     for (const [tableName, tableValue] of Object.entries(json)) {
       lines.push(`[${this.formatKey(tableName)}]`)
@@ -30,7 +32,7 @@ export class TOMLWriter {
     return lines.join('\n').trim()
   }
 
-  private formatValue(value: unknown, currentIndent: string): string {
+  formatValue(value, currentIndent) {
     if (value === null) return '""'
     if (typeof value === 'string') return JSON.stringify(value)
     if (typeof value === 'number') return String(value)
@@ -44,7 +46,7 @@ export class TOMLWriter {
     return String(value)
   }
 
-  private formatArray(arr: unknown[], currentIndent: string): string {
+  formatArray(arr, currentIndent) {
     if (arr.length === 0) return '[]'
 
     const hasObject = arr.some((v) => this.isObject(v))
@@ -59,12 +61,10 @@ export class TOMLWriter {
       return `${nextIndent}${formatted},`
     })
 
-    return `[
-${items.join('\n')}
-${currentIndent}]`
+    return `[\n${items.join('\n')}\n${currentIndent}]`
   }
 
-  private formatInlineTable(obj: Record<string, unknown>, currentIndent: string): string {
+  formatInlineTable(obj, currentIndent) {
     const nextIndent = currentIndent + this.indent
     const entries = Object.entries(obj)
 
@@ -80,22 +80,20 @@ ${currentIndent}]`
       return `${nextIndent}${this.formatKey(k)} = ${value},`
     })
 
-    return `{
-${lines.join('\n')}
-${currentIndent}}`
+    return `{\n${lines.join('\n')}\n${currentIndent}}`
   }
 
-  private formatKey(key: string): string {
+  formatKey(key) {
     return /^[A-Za-z0-9_-]+$/.test(key) ? key : JSON.stringify(key)
   }
 
-  private isObject(value: unknown): value is Record<string, unknown> {
+  isObject(value) {
     return value !== null && typeof value === 'object' && !Array.isArray(value)
   }
 }
 
-async function readStdin(): Promise<string> {
-  const chunks: Buffer[] = []
+async function readStdin() {
+  const chunks = []
   for await (const chunk of process.stdin) {
     chunks.push(chunk)
   }
@@ -128,7 +126,7 @@ async function main() {
 
   const input = await readStdin()
 
-  let json: Record<string, unknown>
+  let json
   try {
     json = JSON.parse(input)
   } catch {

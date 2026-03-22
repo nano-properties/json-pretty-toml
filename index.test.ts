@@ -1,5 +1,5 @@
 import { test, expect } from 'bun:test'
-import { TOMLWriter } from './index'
+import { TOMLWriter } from './index.js'
 
 const writer = new TOMLWriter()
 
