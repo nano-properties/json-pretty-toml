@@ -1,4 +1,4 @@
-# source & test
+# test only
 index.test.ts
 test/
 *.test.ts

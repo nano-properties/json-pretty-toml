@@ -5,14 +5,13 @@
   "main": "index.ts",
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=23"
   },
   "bin": {
-    "json-pretty-toml": "tsx ./index.ts"
+    "json-pretty-toml": "./cli.mjs"
   },
   "scripts": {
     "test": "bun test",
-    "start": "tsx index.ts",
     "format": "prettier --write ."
   },
   "keywords": [
@@ -23,7 +22,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "prettier": "^3.8.1",
-    "tsx": "^4.21.0"
+    "prettier": "^3.8.1"
   }
 }
