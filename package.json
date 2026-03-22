@@ -1,0 +1,23 @@
+{
+  "name": "json-pretty-toml",
+  "version": "1.0.0",
+  "description": "Convert JSON to flat TOML with max 2-level keys",
+  "module": "index.ts",
+  "type": "module",
+  "bin": {
+    "json-pretty-toml": "./index.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "format": "prettier --write ."
+  },
+  "keywords": ["json", "toml", "converter", "cli"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "^3.8.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

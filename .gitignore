@@ -1,0 +1,34 @@
+# dependencies
+node_modules
+
+# output
+*.tgz
+
+# coverage
+coverage
+*.lcov
+
+# logs
+*.log
+
+# env
+.env
+.env.*
+
+# caches
+.cache
+*.tsbuildinfo
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store
+
+# test data
+openclaw.json
+openclaw.toml
+
+# docs
+CLAUDE.md
